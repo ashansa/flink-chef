@@ -21,7 +21,10 @@ group node[:hadoop][:group] do
 end
 
 ark "flink" do
-  url node[:flink][:url]
+  if version = "0.10.1"
+    url node[:flink][:url]
+  else
+    url node[:flink][:archiveurl]
   version node[:flink][:version]
   path node[:flink][:home]
   home_dir "#{node[:flink][:dir]}/flink"
